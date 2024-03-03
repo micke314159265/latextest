@@ -20,4 +20,4 @@ jobs:
 
     - name: Move PDF to root
       run: |
-        mv build/main.pdf main.pdf
+        mv main.pdf $GITHUB_WORKSPACE/main.pdf
