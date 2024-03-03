@@ -1,20 +1,14 @@
-name: Build LaTeX document
-on: [push]
+name: latexmk
+on:
+  push:
 jobs:
-  build_latex:
-    runs-on: ubuntu-latest
+  latexmk:
+    runs-on: ubuntu-22.04
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v1
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@master
+      - uses: actions/checkout@v2
+      - uses: yegor256/latexmk-action@0.10.9
         with:
-          root_file: main.tex
-      - name: Commit PDF to repository
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git update-index --chmod=+x ./.github/scripts/backend_decrypt.sh
-          git add main.pdf
-          git commit -m "Add generated PDF"
-          git push https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
+          cmd: latexmk
+          path: foo
+          opts: -pdf
+          packages: acmart tikz
