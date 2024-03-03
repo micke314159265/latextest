@@ -16,4 +16,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add main.pdf
           git commit -m "Add generated PDF"
-          git push origin HEAD:master
+          git push https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
