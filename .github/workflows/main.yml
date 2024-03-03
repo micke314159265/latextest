@@ -10,8 +10,6 @@ jobs:
         uses: xu-cheng/latex-action@master
         with:
           root_file: main.tex
-      - name: Save PDF to repository
-        run: cp main.pdf $GITHUB_WORKSPACE/main.pdf
       - name: Commit PDF to repository
         run: |
           git config --local user.email "action@github.com"
